@@ -5,6 +5,13 @@ import java.io.Serializable;
 // serializable to convert object to json to pass via intent.putExtra()
 public class Book implements Serializable
 {
+    public Book(String name, String author, int pages)
+    {
+        this.title = name;
+        this.author = author;
+        this.pages = pages;
+    }
+
     public Book(int id, String name, String author, int pages)
     {
         this.id = id;
