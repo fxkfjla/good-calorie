@@ -14,11 +14,6 @@ import com.example.goodcalorie.R;
 
 public class UpdateActivity extends AppCompatActivity
 {
-    EditText titleInput, authorInput, pagesInput;
-    Button updateButton;
-
-    Book book;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -34,19 +29,26 @@ public class UpdateActivity extends AppCompatActivity
 
         if(intent.hasExtra("book"))
         {
-            Book intentBook = (Book)intent.getSerializableExtra("book");
+            intentBook = (Book)intent.getSerializableExtra("book");
 
-            book = new Book
-            (
-                intentBook.getId(), intentBook.getTitle(),
-                intentBook.getAuthor(), intentBook.getPages()
-            );
-
-            titleInput.setText(book.getTitle());
-            authorInput.setText(book.getAuthor());
-            pagesInput.setText(book.getPages());
+            titleInput.setText(intentBook.getTitle());
+            authorInput.setText(intentBook.getAuthor());
+            pagesInput.setText(String.valueOf(intentBook.getPages()));
         }
         else Toast.makeText(this, "No data.", Toast.LENGTH_SHORT).show();
+    }
+
+    void updateBook()
+    {
+        BookLibraryRepository database = new BookLibraryRepository(UpdateActivity.this);
+
+        String title = titleInput.getText().toString().trim();
+        String author = authorInput.getText().toString().trim();
+        int pages = Integer.parseInt(pagesInput.getText().toString().trim());
+
+        Book book = new Book(intentBook.getId(), title, author, pages);
+
+        database.updateData(book);
     }
 
     private void initialize()
@@ -58,25 +60,11 @@ public class UpdateActivity extends AppCompatActivity
         pagesInput = findViewById(R.id.pagesInteger2);
 
         updateButton = findViewById(R.id.updateButton);
-        updateButton.setOnClickListener(view ->
-        {
-                BookLibraryRepository database = new BookLibraryRepository(UpdateActivity.this);
-                database.updateData(book);
-        });
+        updateButton.setOnClickListener(view -> updateBook());
     }
-}
 
-//        if(getIntent().hasExtra("id") && getIntent().hasExtra("title") && getIntent().hasExtra("author") && getIntent().hasExtra("pages"))
-//        {
-//            book.setId(getIntent().);
-//            id = getIntent().getStringExtra("id");
-//            title = getIntent().getStringExtra("title");
-//            author = getIntent().getStringExtra("author");
-//            pages = getIntent().getStringExtra("pages");
-//
-//            titleInput.setText(title);
-//            authorInput.setText(author);
-//            pagesInput.setText(pages);
-//        }
-//        else
-//            Toast.makeText(this, "No data.", Toast.LENGTH_SHORT).show();
+    private EditText titleInput, authorInput, pagesInput;
+    private Button updateButton;
+
+    private Book intentBook;
+}

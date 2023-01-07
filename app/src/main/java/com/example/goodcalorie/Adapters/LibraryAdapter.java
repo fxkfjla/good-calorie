@@ -86,22 +86,4 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
     private ArrayList<Book> books;
 }
 
-//    @Override
-//    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position)
-//    {
-//        holder.bookId.setText(String.valueOf(books.get(position).getId()));
-//        holder.bookTitle.setText(String.valueOf(books.get(position).getTitle()));
-//        holder.bookAuthor.setText(String.valueOf(books.get(position).getAuthor()));
-//        holder.bookPages.setText(String.valueOf(books.get(position).getPages()));
-//        holder.mainLayout.setOnClickListener(view ->
-//        {
-//            Intent intent = new Intent(context, UpdateActivity.class);
-//            intent.putExtra("id", String.valueOf(bookId.get(position)));
-//            intent.putExtra("title", String.valueOf(bookTitle.get(position)));
-//            intent.putExtra("author", String.valueOf(bookAuthor.get(position)));
-//            intent.putExtra("pages", String.valueOf(bookPages.get(position)));
-//            activity.startActivityForResult(intent, 1);
-//        });
-//    }
-
 
