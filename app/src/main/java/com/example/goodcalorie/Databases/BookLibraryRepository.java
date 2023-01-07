@@ -1,13 +1,21 @@
 package com.example.goodcalorie.Databases;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
 import android.widget.Toast;
 
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+
 import com.example.goodcalorie.Models.Book;
+import com.example.goodcalorie.R;
+import com.example.goodcalorie.Util.NotificationUtil;
 
 public class BookLibraryRepository extends SQLiteOpenHelper
 {
@@ -55,6 +63,7 @@ public class BookLibraryRepository extends SQLiteOpenHelper
         else
         {
             Toast.makeText(context, "Book added successfully", Toast.LENGTH_SHORT).show();
+            NotificationUtil.sendNotification(context.getApplicationContext(), "Book added!", "New book has been added!");
         }
     }
 
