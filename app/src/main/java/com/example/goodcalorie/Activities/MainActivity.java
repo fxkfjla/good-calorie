@@ -10,8 +10,9 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.goodcalorie.Adapter.CustomAdapter;
-import com.example.goodcalorie.Database.BookLibraryRepository;
+import com.example.goodcalorie.Adapters.LibraryAdapter;
+import com.example.goodcalorie.Databases.BookLibraryRepository;
+import com.example.goodcalorie.Models.Book;
 import com.example.goodcalorie.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -23,35 +24,16 @@ public class MainActivity extends AppCompatActivity
     FloatingActionButton addButton;
 
     BookLibraryRepository database;
-    ArrayList<String> bookId, bookTitle, bookAuthor, bookPages;
-    CustomAdapter customAdapter;
+    ArrayList<Book> books;
+    LibraryAdapter libraryAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        recyclerView = findViewById(R.id.recyclerView);
-        addButton = findViewById(R.id.addButton);
-
-        addButton.setOnClickListener(view ->
-        {
-            Intent intent = new Intent(this, AddActivity.class);
-            startActivity(intent);
-        });
-
-        database = new BookLibraryRepository(MainActivity.this);
-        bookId = new ArrayList<>();
-        bookTitle = new ArrayList<>();
-        bookAuthor = new ArrayList<>();
-        bookPages = new ArrayList<>();
-
-        displayData();
-
-        customAdapter = new CustomAdapter(MainActivity.this, this, bookId, bookTitle, bookAuthor, bookPages);
-        recyclerView.setAdapter(customAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        initialize();
+        readData();
     }
 
     @Override
@@ -63,20 +45,46 @@ public class MainActivity extends AppCompatActivity
             recreate();
     }
 
-    public void displayData()
+    private void readData()
     {
         Cursor cursor = database.readAllData();
 
         if(cursor.getCount() == 0)
+        {
             Toast.makeText(this, "No data.", Toast.LENGTH_SHORT).show();
-        else
-            while(cursor.moveToNext())
-            {
-                bookId.add(cursor.getString(0));
-                bookTitle.add(cursor.getString(1));
-                bookAuthor.add(cursor.getString(2));
-                bookPages.add(cursor.getString(3));
-            }
+            return;
+        }
 
+        while(cursor.moveToNext())
+        {
+            books.add(new Book
+            (
+                Integer.parseInt(cursor.getString(0)), cursor.getString(1),
+                cursor.getString(2), Integer.parseInt(cursor.getString(3))
+            ));
+        }
+    }
+
+    private void initialize()
+    {
+        setContentView(R.layout.activity_main);
+
+        recyclerView = findViewById(R.id.recyclerView);
+
+        addButton = findViewById(R.id.addButton);
+        addButton.setOnClickListener(view ->
+        {
+            Intent intent = new Intent(this, AddActivity.class);
+            startActivity(intent);
+        });
+
+        database = new BookLibraryRepository(MainActivity.this);
+
+        books = new ArrayList<>();
+
+        // displaying data with recycler view and custom adapter
+        libraryAdapter = new LibraryAdapter(MainActivity.this, this, books);
+        recyclerView.setAdapter(libraryAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
     }
 }

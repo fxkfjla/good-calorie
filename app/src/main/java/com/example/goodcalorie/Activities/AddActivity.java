@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.goodcalorie.Database.BookLibraryRepository;
+import com.example.goodcalorie.Databases.BookLibraryRepository;
 import com.example.goodcalorie.R;
 
 public class AddActivity extends AppCompatActivity

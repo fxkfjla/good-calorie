@@ -18,10 +18,9 @@
             android:padding="12dp">
 
             <TextView
-                android:id="@+id/bookId_text"
+                android:id="@+id/bookId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1"
                 android:textColor="@color/black"
                 android:textSize="40sp"
                 android:textStyle="bold"
@@ -30,30 +29,27 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/bookTitle_text"
+                android:id="@+id/bookTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="Title 1"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                app:layout_constraintStart_toEndOf="@+id/bookId_text"
-                app:layout_constraintTop_toTopOf="@+id/bookId_text" />
+                app:layout_constraintStart_toEndOf="@+id/bookId"
+                app:layout_constraintTop_toTopOf="@+id/bookId" />
 
             <TextView
-                android:id="@+id/bookAuthor_text"
+                android:id="@+id/bookAuthor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Author 1"
-                app:layout_constraintStart_toStartOf="@+id/bookTitle_text"
-                app:layout_constraintTop_toBottomOf="@+id/bookTitle_text" />
+                app:layout_constraintStart_toStartOf="@+id/bookTitle"
+                app:layout_constraintTop_toBottomOf="@+id/bookTitle" />
 
             <TextView
-                android:id="@+id/bookPages_text"
+                android:id="@+id/bookPages"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="120"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

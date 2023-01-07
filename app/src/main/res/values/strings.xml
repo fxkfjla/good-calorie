@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">GoodCalorie</string>
     <string name="addBook">AddBook</string>
+    <string name="updateBook">UpdateBook</string>
 </resources>

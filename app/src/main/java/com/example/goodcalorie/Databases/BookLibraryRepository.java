@@ -1,12 +1,13 @@
-package com.example.goodcalorie.Database;
+package com.example.goodcalorie.Databases;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.text.Editable;
 import android.widget.Toast;
+
+import com.example.goodcalorie.Models.Book;
 
 public class BookLibraryRepository extends SQLiteOpenHelper
 {
@@ -69,17 +70,17 @@ public class BookLibraryRepository extends SQLiteOpenHelper
         return cursor;
     }
 
-    public void updateData(String rowId, String author, String title, String pages)
+    public void updateData(Book book)
     {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues content = new ContentValues();
 
-        content.put(columnTitle, title);
-        content.put(columnAuthor, author);
-        content.put(columnPages, pages);
+        content.put(columnTitle, book.getTitle());
+        content.put(columnAuthor, book.getAuthor());
+        content.put(columnPages, book.getPages());
 
-        long result = database.update(tableName, content, "id=?", new String[]{rowId});
-        
+        long result = database.update(tableName, content, "id=?", new String[]{String.valueOf(book.getId())});
+
         if(result == -1)
             Toast.makeText(context, "Failed to update!", Toast.LENGTH_SHORT).show();
         else

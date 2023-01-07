@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.AddActivity">
+    tools:context=".Activities.UpdateActivity">
 
     <EditText
         android:id="@+id/titleText2"
@@ -62,6 +62,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="165dp"
         android:text="Update"
+        android:contentDescription="@string/updateBook"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pagesInteger2" />
