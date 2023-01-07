@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.goodcalorie.Databases.BookLibraryRepository;
+import com.example.goodcalorie.Models.Book;
 import com.example.goodcalorie.R;
 
 public class AddActivity extends AppCompatActivity
@@ -30,13 +31,14 @@ public class AddActivity extends AppCompatActivity
         {
             BookLibraryRepository lib = new BookLibraryRepository(this);
 
-            lib.addBook
+            Book book = new Book
             (
                 title.getText().toString().trim(),
                 author.getText().toString().trim(),
                 Integer.parseInt(pages.getText().toString().trim())
             );
 
+            lib.addBook(book);
         });
     }
 }
