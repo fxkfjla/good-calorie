@@ -47,14 +47,14 @@ public class BookLibraryRepository extends SQLiteOpenHelper
         onCreate(db);
     }
 
-    public void addBook(String title, String author, int pages)
+    public void addBook(Book book)
     {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(columnTitle, title);
-        cv.put(columnAuthor, author);
-        cv.put(columnPages, pages);
+        cv.put(columnTitle, book.getTitle());
+        cv.put(columnAuthor, book.getAuthor());
+        cv.put(columnPages, book.getPages());
 
         if(db.insert(tableName, null, cv) == -1)
         {
@@ -94,6 +94,23 @@ public class BookLibraryRepository extends SQLiteOpenHelper
             Toast.makeText(context, "Failed to update!", Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(context, "Successfully updated!", Toast.LENGTH_SHORT).show();
+    }
+
+
+    public void deleteBook(int id)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+
+        long result = db.delete(tableName, "id=?", new String[]{String.valueOf(id)});
+
+        if(result == -1)
+        {
+            Toast.makeText(context, "Failed to delete!", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(context, "Successfully deleted!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private final Context context;
