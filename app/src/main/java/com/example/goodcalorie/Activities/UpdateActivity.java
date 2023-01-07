@@ -1,5 +1,6 @@
 package com.example.goodcalorie.Activities;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -51,6 +52,13 @@ public class UpdateActivity extends AppCompatActivity
         database.updateData(book);
     }
 
+    void deleteBook()
+    {
+        BookLibraryRepository database = new BookLibraryRepository(UpdateActivity.this);
+
+        database.deleteBook(intentBook.getId());
+    }
+
     private void initialize()
     {
         setContentView(R.layout.activity_update);
@@ -59,12 +67,14 @@ public class UpdateActivity extends AppCompatActivity
         authorInput = findViewById(R.id.authorText2);
         pagesInput = findViewById(R.id.pagesInteger2);
 
-        updateButton = findViewById(R.id.updateButton);
+        Button updateButton = findViewById(R.id.updateButton);
         updateButton.setOnClickListener(view -> updateBook());
+
+        Button deleteButton = findViewById(R.id.deleteButton);
+        deleteButton.setOnClickListener(view -> deleteBook());
     }
 
     private EditText titleInput, authorInput, pagesInput;
-    private Button updateButton;
 
     private Book intentBook;
 }
