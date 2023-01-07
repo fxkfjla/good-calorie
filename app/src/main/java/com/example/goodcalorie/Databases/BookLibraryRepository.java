@@ -113,6 +113,12 @@ public class BookLibraryRepository extends SQLiteOpenHelper
         }
     }
 
+    public void deleteAll()
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM " + tableName);
+    }
+
     private final Context context;
 
     private final static String databaseName = "BookLibrary.db";

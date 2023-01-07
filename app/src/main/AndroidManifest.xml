@@ -40,6 +40,12 @@
             android:name=".Activities.AddActivity"
             android:label="Add Book"
             android:parentActivityName=".Activities.MainActivity" />
+        <activity
+            android:name=".Activities.VideoActivity"
+            android:label="Show video"
+            android:parentActivityName=".Activities.MainActivity"
+        />
+
     </application>
 
 </manifest>
