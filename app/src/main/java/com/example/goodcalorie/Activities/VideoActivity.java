@@ -18,7 +18,7 @@ public class VideoActivity extends AppCompatActivity
         setContentView(R.layout.activity_video);
 
         VideoView video = findViewById(R.id.video_view);
-        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.kacper_spi;
+        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.warto;
         Uri uri = Uri.parse(videoPath);
         video.setVideoURI(uri);
 
