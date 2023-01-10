@@ -148,10 +148,8 @@ public class MainActivity extends AppCompatActivity
         }
         else if(menu.getItemId() == R.id.show_video)
         {
-            Toast.makeText(this, "uuuuuuuu", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, VideoActivity.class);
             startActivity(intent);
-            //finish();
         }
         return super.onOptionsItemSelected(menu);
     }
