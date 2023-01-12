@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -43,36 +44,42 @@ public class MainActivity extends AppCompatActivity
     protected void onStart()
     {
         super.onStart();
+        Log.i("MainActivity", "Function onStart");
     }
 
     @Override
     protected void onRestart()
     {
         super.onRestart();
+        Log.i("MainActivity", "Function onRestart");
     }
 
     @Override
     protected void onResume()
     {
         super.onResume();
+        Log.i("MainActivity", "Function onResume");
     }
 
     @Override
     protected void onPause()
     {
         super.onPause();
+        Log.i("MainActivity", "Function onPause");
     }
 
     @Override
     protected void onStop()
     {
         super.onStop();
+        Log.i("MainActivity", "Function onStop");
     }
 
     @Override
     protected void onDestroy()
     {
         super.onDestroy();
+        Log.i("MainActivity", "Function onDestroy");
     }
 
     @Override
